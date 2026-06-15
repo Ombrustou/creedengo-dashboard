@@ -1,6 +1,6 @@
 /*
- * Creedengo Dashboard plugin - Provides dashboard to monitor and help reduce the environmental footprint of your programs
- * Copyright © 2025 Green Code Initiative (https://green-code-initiative.org)
+ * Creedengo Dashboard plugin - Provides a Creedengo Sustainability Dashboard to have an overview of the status and the main sustainability issue of the projects
+ * Copyright © ${year} Green Code Initiative (https://green-code-initiative.org)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,10 @@
 package org.greencodeinitiative.creedengo.dashboard;
 
 import org.greencodeinitiative.creedengo.dashboard.web.DashboardPageDefinition;
+import org.sonar.api.Plugin;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class DashboardPlugin implements Plugin {
 
@@ -25,7 +29,9 @@ public class DashboardPlugin implements Plugin {
 
     @Override
     public void define(Context context) {
-        context.addExtensions( DashboardPageDefinition.class );
+        Collection<Object> extensions = new ArrayList<>();
+        extensions.add(DashboardPageDefinition.class);
+        context.addExtensions(extensions);
     }
 
 }

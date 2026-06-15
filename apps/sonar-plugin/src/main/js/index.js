@@ -1,20 +1,27 @@
 /**
  * @see See https://docs.sonarsource.com/sonarqube/latest/extension-guide/developing-a-plugin/adding-pages-to-the-webapp/#create-a-javascript-file-per-page
  */
-import "@creedengo/vue-dashboard/script"
-import "@creedengo/vue-dashboard/stylesheet"
+import { createApp } from 'vue'
+import { DashboardPage } from '@creedengo/vue-dashboard-page'
 
 function start(options) {
     const rootNode = options.el;
-    rootNode.innerHTML = `
-        <div id="app"</div>
-    `;
-    return () => stop(rootNode)
+    const project = options.projectKey || options.project || '';
+    const branch = options.branch || 'main';
+
+    const app = createApp(DashboardPage, {
+        project,
+        branch,
+    });
+
+    app.mount(rootNode);
+
+    return () => stop(app, rootNode);
 }
 
-function stop(rootNode) {
-    // pretty hardcore - not sure to maintain that as-is
-    rootNode.innerHTML = ''
+function stop(app, rootNode) {
+    app.unmount();
+    rootNode.innerHTML = '';
 }
 
-window.registerExtension('creedengo/view', start, true)
+window.registerExtension('creedengodashboard/view', start, true)

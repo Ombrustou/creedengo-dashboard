@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package org.greencodeinitiative.creedengo.dashboard.web;
+package org.greencodeinitiative.creedengo.dashboard.web;
 
 import org.sonar.api.web.page.Context;
 import org.sonar.api.web.page.Page;
@@ -27,11 +28,9 @@ public class DashboardPageDefinition implements PageDefinition {
 
   @Override
   public void define(Context context) {
-    context
-            .addPage(Page.builder("creedengodashboard/view")
-                .setName("Creedengo")
-                .setScope(COMPONENT)
-                .build())
-    ;
+    context.addPage(Page.builder("creedengodashboard/view")
+        .setName("Creedengo")
+        .setScope(COMPONENT)
+        .build());
   }
 }

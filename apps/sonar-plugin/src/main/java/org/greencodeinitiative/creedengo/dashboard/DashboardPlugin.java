@@ -20,11 +20,16 @@ package org.greencodeinitiative.creedengo.dashboard;
 import org.greencodeinitiative.creedengo.dashboard.web.DashboardPageDefinition;
 import org.sonar.api.Plugin;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class DashboardPlugin implements Plugin {
 
     @Override
     public void define(Context context) {
-        context.addExtension(DashboardPageDefinition.class);
+        Collection<Object> extensions = new ArrayList<>();
+        extensions.add(DashboardPageDefinition.class);
+        context.addExtensions(extensions);
     }
 
 }
